@@ -35,13 +35,13 @@ This Java-based DDoS (Distributed Denial of Service) attack simulation tool is d
 3. **Compile the Java code:**
 
     ```sh
-    javac lemmekiss.java
+    javac Dos.java
     ```
 
 4. **Run the program:**
 
     ```sh
-    java lemmekiss
+    java Dos
     ```
 
 ## Usage 🧑‍💻
