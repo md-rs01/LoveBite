@@ -40,7 +40,7 @@ public class Dos implements Runnable {
         displayBanner();
 
         // User Input for URL
-        System.out.print("Kiss Me🫣=> ");
+        System.out.print("Kiss Me🫣 (url)=> ");
         url = in.nextLine();
         if (!isValidURL(url)) {
             System.out.println(RED + "Invalid URL. Exiting." + RESET);
@@ -48,7 +48,7 @@ public class Dos implements Runnable {
         }
 
         // User Input for Number of Threads
-        System.out.print("How Many Kiss🤔 =>  ");
+        System.out.print("How Much you Love Me🤔 (Thread) =>  ");
         String amountStr = in.nextLine();
         Dos.amount = (amountStr == null || amountStr.equals("")) ? 99999 : Integer.parseInt(amountStr);
 
