@@ -44,6 +44,13 @@ This Java-based DDoS (Distributed Denial of Service) attack simulation tool is d
     java Dos
     ```
 
+   **NB:-**
+   ```sh
+   shudo ulimit -n 999999
+   shudo ulimit -u 999999
+   ```
+
+   
 ## Usage 🧑‍💻
 
 When you run the program, you will be prompted to enter:
