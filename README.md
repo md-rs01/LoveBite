@@ -117,6 +117,7 @@ To avoid detection by varying `user-agent` strings.Varying Request Methods: Swit
 **Author:-** BoyfromBd
 
 **Telegram:-** [HeartCrafter](https://t.me/heartcrafter)
+**Proton-Main:- ** [BoyFromBD](mailto:HeartCrafter@proton.com)
 
 ### Disclaimer ⚠️
 This tool is intended for educational purposes only. Use it responsibly and only on websites where you have permission. The author is not responsible for any misuse of this tool.
